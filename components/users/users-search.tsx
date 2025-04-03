@@ -25,7 +25,7 @@ export function UsersSearch() {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-col gap-2 md:flex-row">
       <div className="relative flex-1">
         <Input
           placeholder="Search users..."
@@ -51,71 +51,73 @@ export function UsersSearch() {
         )}
       </div>
 
-      <Select
-        onValueChange={(e: string) => {
-          setParams({
-            ...params,
-            sortBy: e as any,
-            debounceEnabled: false,
-          });
-        }}
-      >
-        <SelectTrigger className="w-[150px]">
-          <SelectValue placeholder="Sorted by" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Sortby</SelectLabel>
-            <SelectItem value="firstName">First Name</SelectItem>
-            <SelectItem value="lastName">Last Name</SelectItem>
-            <SelectItem value="maidenName">Maiden Name</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      <div className="flex flex-wrap gap-2">
+        <Select
+          onValueChange={(e: string) => {
+            setParams({
+              ...params,
+              sortBy: e as any,
+              debounceEnabled: false,
+            });
+          }}
+        >
+          <SelectTrigger className="w-[150px]">
+            <SelectValue placeholder="Sorted by" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Sortby</SelectLabel>
+              <SelectItem value="firstName">First Name</SelectItem>
+              <SelectItem value="lastName">Last Name</SelectItem>
+              <SelectItem value="maidenName">Maiden Name</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
-      <Select
-        onValueChange={(e: string) => {
-          setParams({
-            ...params,
-            sortBy: e as any,
-            debounceEnabled: false,
-          });
-        }}
-      >
-        <SelectTrigger className="w-[150px]">
-          <SelectValue placeholder="Order by" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Order by</SelectLabel>
-            <SelectItem value="asc">Ascending</SelectItem>
-            <SelectItem value="desc">Descending</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+        <Select
+          onValueChange={(e: string) => {
+            setParams({
+              ...params,
+              sortBy: e as any,
+              debounceEnabled: false,
+            });
+          }}
+        >
+          <SelectTrigger className="w-[150px]">
+            <SelectValue placeholder="Order by" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Order by</SelectLabel>
+              <SelectItem value="asc">Ascending</SelectItem>
+              <SelectItem value="desc">Descending</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
-      <Select
-        onValueChange={(e: string) => {
-          setParams({
-            ...params,
-            limit: +e,
-            debounceEnabled: false,
-          });
-        }}
-        defaultValue={params.limit.toString()}
-      >
-        <SelectTrigger className="w-[60px]">
-          <SelectValue placeholder="Limit" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Limit</SelectLabel>
-            <SelectItem value="5">5</SelectItem>
-            <SelectItem value="10">10</SelectItem>
-            <SelectItem value="15">15</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+        <Select
+          onValueChange={(e: string) => {
+            setParams({
+              ...params,
+              limit: +e,
+              debounceEnabled: false,
+            });
+          }}
+          defaultValue={params.limit.toString()}
+        >
+          <SelectTrigger className="w-[60px]">
+            <SelectValue placeholder="Limit" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Limit</SelectLabel>
+              <SelectItem value="5">5</SelectItem>
+              <SelectItem value="10">10</SelectItem>
+              <SelectItem value="15">15</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }
